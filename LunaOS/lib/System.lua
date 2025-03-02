@@ -552,11 +552,19 @@ local function addMainDesktopMenuItem(menu)
 	
 	createAppViaDir("⚙", "Settings", paths.system.applicationSettings)
 	
-	createAppViaDir("📷", "Photos", paths.system.applicationPictureView)
+	createAppViaDir("📕", "Photos", paths.system.applicationPictureView)
 	
 	createAppViaDir("🖌", "Paint", paths.system.applicationPictureEdit)
 	
 	createAppViaDir("💽", "Minecode IDE", paths.system.applicationMineCodeIDE)
+	
+	createAppViaDir("Aa", "Symbols", paths.system.sys32 .. "Symbols.app/Main.lua")
+	
+	createAppViaDir("🌤", "GeoWeather", paths.system.sys32 .. "GeoWeather.app/Main.lua")
+	
+	createAppViaDir("📅", "Calendar", paths.system.sys32 .. "Calendar.app/Main.lua")
+	
+	createAppViaDir("📷", "Camera", paths.system.sys32 .. "Camera.app/Main.lua")
 	
 	item:addSeparator()
 
@@ -3217,7 +3225,7 @@ function system.authorize()
 	end
 
 	-- Creating login UI only if there's more than one user with protection
-	if #userList > 1 or loadUserSettingsAndCheckProtection(userList[1]) then
+	if #userList > 1 or loadUserSettingsAndCheckProtection(userList[1]) or true then
 		local container = workspace:addChild(GUI.container(1, 1, workspace.width, workspace.height))
 
 		-- If we've loaded wallpaper(from user logout or above) then add a panel to make it darker
@@ -3288,7 +3296,7 @@ function system.authorize()
 				workspace:draw()
 			end
 
-			if #userList > 1 then
+			if #userList > 1 or true then
 				local usersLayout = addLayout(1, container.height, 4)
 				
 				for i = 1, #userList do
